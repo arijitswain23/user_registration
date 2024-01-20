@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+    <center>
+        <h1>Registration Forms</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ufo.as_p}}
+
+            {{pfo.as_p}}
+
+            <input type="submit" value="Register">
+        </form>
+    </center>
+</body>
+</html>
