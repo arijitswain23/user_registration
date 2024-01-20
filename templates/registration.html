@@ -6,7 +6,7 @@
 <body>
     <center>
         <h1>Registration Forms</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             {{ufo.as_p}}
