@@ -2,8 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from app.forms import *
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
 from django.core.mail import send_mail
+from django.contrib.auth import authenticate,login
 
 def registration(request):
     ufo=UserForm()
@@ -36,3 +38,26 @@ def registration(request):
         else:
             return HttpResponse('Invalid Input')
     return render(request,'registration.html',d)
+
+
+def home(request):
+    if request.session.get('username'):
+        Username=request.session.get('username')
+        d={'Username':Username}
+        return render(request,'home.html',d)
+
+    return render(request,'home.html')
+
+def user_login(request):
+    if request.method=="POST":
+        Username=request.POST['un']
+        Password=request.POST['pw']
+
+        AUO=authenticate(username=Username,password=Password)
+        if AUO and AUO.is_active:
+            login(request,AUO)
+            request.session['username']=Username
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return HttpResponse('Invalid Credntial')
+    return render(request,'user_login.html')
