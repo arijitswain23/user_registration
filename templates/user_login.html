@@ -16,8 +16,9 @@
         <label for="un">Username</label>
         <input type="text" name="un" id="un"><br><br>
         <label for="pw">Password</label>
-        <input type="password" name="pw" id="pw">
+        <input type="password" name="pw" id="pw"><br>
         <input type="submit" value="Login">
-        </form>
+        </form><br>
+        <a href="{% url 'reset_password' %}" class="btn btn-primary">Reset Password</a>
     </center>
 {% endblock %}
